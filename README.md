@@ -169,24 +169,19 @@ for symbol in my_portfolio:
 ## 📸 Screenshots
 
 ### 📈 Price Trend Analysis
-*Line charts showing price movements over time with percentage changes*
+![Price Trends](screenshots/price_trends.png)
 
-![Price Trends](https://via.placeholder.com/800x400/2563eb/ffffff?text=Price+Trend+Charts)
-
-### 🏆 Top Gainers & Losers
-*Horizontal bar charts highlighting best and worst performers*
-
-![Gainers Losers](https://via.placeholder.com/800x400/16a34a/ffffff?text=Top+Gainers+%26+Losers)
+### 🏆 Top Gainers & Losers  
+![Gainers and Losers](screenshots/gainer_loser.png)
 
 ### 📊 Market Cap Distribution
-*Pie charts and scatter plots showing market capitalization analysis*
+![Market Cap Analysis](screenshots/market_cap.png)
 
-![Market Cap](https://via.placeholder.com/800x400/dc2626/ffffff?text=Market+Cap+Analysis)
+### 🌡️ Volatility Analysis
+![Volatility Analysis](screenshots/volatility.png)
 
-### 🌡️ Volatility Heatmap
-*Advanced volatility analysis with statistical metrics*
-
-![Volatility](https://via.placeholder.com/800x400/7c3aed/ffffff?text=Volatility+Analysis)
+### 💻 Console Output
+![Console Output](screenshots/console_output.png)
 
 ---
 
