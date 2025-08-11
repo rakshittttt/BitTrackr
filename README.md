@@ -409,20 +409,6 @@ python -m pytest tests/
 - [ ] Docker containerization
 - [ ] Cloud deployment options
 
----
-## 📸 Screenshots
-
-### 📈 Price Trend Analysis
-![Price Trends](screenshots/price_trends.png)
-
-### 🏆 Top Gainers & Losers  
-![Gainers Losers](screenshots/gainers_losers.png)
-
-### 📊 Market Cap Distribution
-![Market Cap](screenshots/market_cap.png)
-
-### 🌡️ Volatility Analysis
-![Volatility](screenshots/volatility.png)
 
 ---
 
