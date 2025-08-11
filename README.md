@@ -56,7 +56,7 @@
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/crypto-price-tracker.git
+git clone https://github.com/rakshittttt/crypto-price-tracker.git
 cd crypto-price-tracker
 ```
 
