@@ -360,14 +360,6 @@ def calculate_portfolio_value(holdings):
 
 ## 🤝 Contributing
 
-We welcome contributions! Here's how you can help:
-
-### **Ways to Contribute**
-- 🐛 **Bug Reports**: Found an issue? [Open an issue](https://github.com/rakshittttt/crypto-price-tracker/issues)
-- ✨ **Feature Requests**: Have an idea? [Request a feature](https://github.com/rakshittttt/crypto-price-tracker/issues)
-- 📝 **Documentation**: Improve our docs
-- 💻 **Code**: Submit pull requests
-
 ### **Development Setup**
 ```bash
 # Fork the repository
