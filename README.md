@@ -424,23 +424,6 @@ python -m pytest tests/
 
 ---
 
-## 📊 Statistics
-
-<div align="center">
-
-![GitHub stars](https://img.shields.io/github/stars/yourusername/crypto-price-tracker?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/crypto-price-tracker?style=social)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/crypto-price-tracker)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/crypto-price-tracker)
-
-**Supported Cryptocurrencies:** 100+  
-**Data Points Collected:** 1M+  
-**Active Users:** 500+  
-**GitHub Stars:** ⭐ Star us if you find this useful!
-
-</div>
-
----
 
 ## 📄 License
 
@@ -470,26 +453,4 @@ copies of the Software...
 
 ---
 
-## 📞 Support
 
-### **Get Help**
-- 🐛 **Bug Reports**: [GitHub Issues](https://github.com/rakshittttt/crypto-price-tracker/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/rakshittttt/crypto-price-tracker/discussions)
-- 📧 **Email**: rakshitrana412@gmail.com
-
----
-
-<div align="center">
-
-### ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/crypto-price-tracker&type=Date)](https://star-history.com/#yourusername/crypto-price-tracker&Date)
-
-
-[🔝 Back to Top](#-cryptocurrency-price-tracker)
-
-</div>
-
----
-
-*Last updated: August 2025 • Version 1.0*
