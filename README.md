@@ -168,11 +168,11 @@ for symbol in my_portfolio:
 
 ## 📸 Screenshots
 
-### 📈 Price Trend Analysis
-![Price Trends](screenshots/price_trends.png)
+### 📈 Top Gainers and Losers
+![Price Trends](screenshots/gainer_loser.png)
 
-### 🏆 Top Gainers & Losers  
-![Gainers and Losers](screenshots/gainer_loser.png)
+### 🏆 Price Trend Analysis 
+![Gainers and Losers](screenshots/price_trends.png)
 
 ### 📊 Market Cap Distribution
 ![Market Cap Analysis](screenshots/market_cap.png)
