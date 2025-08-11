@@ -9,11 +9,25 @@ import json
 import schedule
 from typing import List, Dict, Optional
 import numpy as np
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class CryptoPriceTracker:
     def __init__(self, db_path: str = "crypto_prices.db"):
         self.db_path = db_path
-        self.base_url = "https://api.coingecko.com/api/v3"
+        self.api_key = os.getenv("COINGECKO_API_KEY")
+        # Optional: explicitly set API tier ("pro" or "free"). If not set, infer from base URL
+        self.api_tier = os.getenv("COINGECKO_API_TIER", "").strip().lower()
+        env_base_url = os.getenv("COINGECKO_API_BASE_URL")
+        if env_base_url:
+            self.base_url = env_base_url
+        else:
+            # Default to free endpoint; we will upgrade automatically if api_tier=="pro"
+            self.base_url = "https://api.coingecko.com/api/v3"
+            if self.api_tier == "pro":
+                self.base_url = "https://pro-api.coingecko.com/api/v3"
         self.setup_database()
         
     def setup_database(self):
@@ -41,6 +55,18 @@ class CryptoPriceTracker:
         conn.commit()
         conn.close()
         
+    def _build_headers(self, use_pro_header: bool) -> Dict[str, str]:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Accept': 'application/json'
+        }
+        if self.api_key:
+            if use_pro_header:
+                headers['x-cg-pro-api-key'] = self.api_key
+            else:
+                headers['x-cg-demo-api-key'] = self.api_key
+        return headers
+        
     def fetch_crypto_data(self, limit: int = 50) -> Optional[List[Dict]]:
         """
         Fetch cryptocurrency data from CoinGecko API.
@@ -51,34 +77,64 @@ class CryptoPriceTracker:
         Returns:
             List of cryptocurrency data dictionaries
         """
-        try:
-            url = f"{self.base_url}/coins/markets"
-            params = {
-                'vs_currency': 'usd',
-                'order': 'market_cap_desc',
-                'per_page': limit,
-                'page': 1,
-                'sparkline': False,
-                'price_change_percentage': '24h,7d'
-            }
-            
-            headers = {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-            }
-            
-            response = requests.get(url, params=params, headers=headers, timeout=30)
-            response.raise_for_status()
-            
-            data = response.json()
-            print(f"Successfully fetched data for {len(data)} cryptocurrencies")
-            return data
-            
-        except requests.exceptions.RequestException as e:
-            print(f"Error fetching data: {e}")
-            return None
-        except json.JSONDecodeError as e:
-            print(f"Error parsing JSON response: {e}")
-            return None
+        url_path = "/coins/markets"
+        params = {
+            'vs_currency': 'usd',
+            'order': 'market_cap_desc',
+            'per_page': limit,
+            'page': 1,
+            # Send string to avoid servers interpreting Python bools
+            'sparkline': 'false',
+            'price_change_percentage': '24h,7d'
+        }
+        
+        # Determine whether to try pro first
+        should_try_pro = (
+            self.api_tier == 'pro' or 'pro-api' in (self.base_url or '')
+        )
+        
+        try_order = []
+        if should_try_pro:
+            try_order.append({
+                'base_url': 'https://pro-api.coingecko.com/api/v3',
+                'use_pro_header': True
+            })
+        # Always include free endpoint as fallback or primary
+        try_order.append({
+            'base_url': 'https://api.coingecko.com/api/v3',
+            'use_pro_header': False
+        })
+        
+        last_error: Optional[Exception] = None
+        for attempt in try_order:
+            url = f"{attempt['base_url']}{url_path}"
+            headers = self._build_headers(use_pro_header=attempt['use_pro_header'])
+            try:
+                response = requests.get(url, params=params, headers=headers, timeout=30)
+                if response.status_code >= 400:
+                    # Try to surface helpful error info
+                    try:
+                        err_json = response.json()
+                        print(f"API error {response.status_code} at {url}: {err_json}")
+                    except Exception:
+                        print(f"API error {response.status_code} at {url}: {response.text[:300]}")
+                    response.raise_for_status()
+                data = response.json()
+                print(f"Successfully fetched data for {len(data)} cryptocurrencies from {'PRO' if attempt['use_pro_header'] else 'FREE'} endpoint")
+                # Update base_url to the successful one
+                self.base_url = attempt['base_url']
+                return data
+            except requests.exceptions.RequestException as e:
+                last_error = e
+                # Proceed to next attempt in fallback order
+                continue
+            except json.JSONDecodeError as e:
+                last_error = e
+                continue
+        
+        if last_error:
+            print(f"Error fetching data after trying {len(try_order)} endpoint(s): {last_error}")
+        return None
             
     def store_data(self, crypto_data: List[Dict]):
         if not crypto_data:

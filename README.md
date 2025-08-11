@@ -22,7 +22,7 @@
 - **SQLite database** for persistent storage
 - **Automated scheduling** for daily/hourly collection
 - **Historical data** tracking with timestamps
-- **No API key required** - completely free to use
+- **No API key required** (optional CoinGecko Pro API key supported)
 
 ### 📈 **Advanced Analytics**
 - **Price volatility analysis** using statistical methods
@@ -65,7 +65,13 @@ cd crypto-price-tracker
 pip install -r requirements.txt
 ```
 
-### 3. Verify Installation
+### 3. (Optional) Configure API Key
+```bash
+cp .env.example .env
+# Edit .env and set COINGECKO_API_KEY=your_key_here
+```
+
+### 4. Verify Installation
 ```bash
 python test_tracker.py
 ```
