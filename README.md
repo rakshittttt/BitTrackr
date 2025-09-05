@@ -83,7 +83,7 @@ python test_tracker.py
 ### 🎮 **Instant Demo (2 minutes)**
 Get immediate results with sample data:
 ```bash
-python immediate_demo.py
+python demo.py
 ```
 
 ### 📊 **First Data Collection**
