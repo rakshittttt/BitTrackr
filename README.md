@@ -230,9 +230,10 @@ plt.figure(figsize=(20, 12))
 
 ```
 🚀 CRYPTOCURRENCY MARKET REPORT - LAST 7 DAYS
+# Real data may vary as it is just an example
 ============================================================
 
-TOP 5 GAINERS (24h):
+TOP 5 GAINERS (24h):  
 ----------------------------------------
 1. SOL (Solana): +12.45%
 2. ADA (Cardano): +8.23%
