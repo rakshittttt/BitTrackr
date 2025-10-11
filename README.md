@@ -230,7 +230,7 @@ plt.figure(figsize=(20, 12))
 
 ```
 🚀 CRYPTOCURRENCY MARKET REPORT - LAST 7 DAYS
-# Real data may vary as it is just an example
+# Real data may vary as it is just an example 
 ============================================================
 
 TOP 5 GAINERS (24h):  
