@@ -6,7 +6,7 @@ from datetime import datetime
 def collect_crypto_data():
     """Function to collect cryptocurrency data"""
     print(f"\n🚀 Starting data collection at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    
+    """a comment"""
     try:
         tracker = CryptoPriceTracker()
         crypto_data = tracker.fetch_crypto_data(limit=100)
